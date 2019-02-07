@@ -9,12 +9,15 @@ class SessionsController < ApplicationController
       flash[:success] = "ログイン成功"
       redirect_to @user
     else
-      flash.now[:danger]
+      flash.now[:danger] = "ログイン失敗！！！"
       render "new"
     end
   end
   
   def destroy
+    session[:user_id] = nil
+    flash[:success] = "ログアウトしました"
+    redirect_to root_url
   end
   
   private
