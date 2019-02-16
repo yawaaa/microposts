@@ -30,7 +30,8 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
 
-
-
-
+  def feed_microposts
+    Micropost.where(user_id: self.following_ids + [self.id])
+    #自分のフォロワーのid達(配列)と、自分のidを配列に格納したもの、、、、を探して全postを取得
+  end
 end
