@@ -1,0 +1,27 @@
+<%# <% unless current_user == user %>
+  <% if current_user.fav?(target_micropost) %>
+    <%= form_for(current_user.favorites.find_by(favpost_id: target_micropost.id), html: { method: :delete}) do |f| %>
+      <%= hidden_field_tag :favpost_id, target_micropost.id %>
+<%#      <button type="button" class="btn btn-xs">
+<%#        <span class="glyphicon  glyphicon-heart-empty"></span> 
+<%#      </button> %>
+      <%= button_tag( class: "btn btn-link btn-xs ") do %>
+        <%= content_tag :span, "", class: "glyphicon glyphicon-heart",style: "color:#ff99b5;" %>
+      <% end %>
+      
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.favorites.build) do |f| %>
+      <%= hidden_field_tag :favpost_id, target_micropost.id %>
+<%#      <%= f.submit "favo",  class: "btn btn-danger btn-xs" %>
+
+      <%= button_tag( class: "btn btn-link btn-xs") do %>
+        <%= content_tag :span, "", class: "glyphicon  glyphicon-heart-empty ",style: "color:#ff99b5;" %>
+      <% end %>
+
+    <% end %>
+  <% end %>
+
+<%# <% end %>
+
+  
