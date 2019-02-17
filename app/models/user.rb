@@ -17,11 +17,14 @@ class User < ApplicationRecord
   # follow => favpost, following => favoring
   # user_id -> user_id.favorites -> user_id.favorings(favpost)
   # favpost_id.favored(user) <- favpost_id.reverses... <- favpost_id
+
   has_many :favorites
+  # has_many :favorites, dependent: :destroy
   has_many :favorings, through: :favorites, source: :favpost
   has_many :reverses_of_favorate, class_name: "Favorite", foreign_key: "favpost_id"
   has_many :favored, through: :reverses_of_favorate, source: :user
-  
+
+
 
   def follow(other_user)
     # 実行したUserのインスタンスがself

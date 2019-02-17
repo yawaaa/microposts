@@ -15,10 +15,11 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
+    # binding.pry
+    
     @micropost.destroy
     flash[:success] = "メッセージ削除完了"
     redirect_back(fallback_location: root_path)
-    
   end
   
   private 
